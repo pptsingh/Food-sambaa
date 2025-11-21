@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodFlow - Food Ordering System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">FoodFlow</div>
+        <nav>
+            <button onclick="showCustomerView()" class="nav-button" id="customer-view-btn"><i class="fas fa-user"></i> Customer View</button>
+            <button onclick="showChefLogin()" class="nav-button" id="chef-view-btn"><i class="fas fa-utensils"></i> Chef View</button>
+            <span id="chef-greeting" style="display: none;">Welcome, Chef <button onclick="logoutChef()" class="logout-btn">Logout</button></span>
+        </nav>
+    </header>
+
+    <div id="chef-login-page" class="view-container" style="display:none;">
+        <div class="login-box">
+            <h2>Chef Login</h2>
+            <p>Access the kitchen dashboard</p>
+            <input type="text" id="chef-username" placeholder="Enter username">
+            <input type="password" id="chef-password" placeholder="Enter password">
+            <button onclick="loginChef()">Sign In</button>
+            <div class="demo-credentials">
+                <h4>Demo Credentials:</h4>
+                <p>Username: **chef**</p>
+                <p>Password: **chef123**</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="chef-dashboard-view" class="view-container" style="display:none;">
+        <h1 class="dashboard-title">Chef Dashboard</h1>
+        <p class="dashboard-subtitle">Manage incoming orders and queue</p>
+        
+        <div class="status-cards">
+            <div class="status-card">
+                <div class="count" id="orders-waiting-count">0</div>
+                <div class="label">Orders Waiting</div>
+            </div>
+            <div class="status-card">
+                <div class="count" id="orders-preparing-count">0</div>
+                <div class="label">Orders Preparing</div>
+            </div>
+            <div class="status-card">
+                <div class="count" id="orders-completed-count">0</div>
+                <div class="label">Orders Completed Today</div>
+            </div>
+        </div>
+
+        <div class="order-queue-section">
+            <h2 class="queue-title"><i class="fas fa-list-ul"></i> Order Queue</h2>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>ORDER ID</th>
+                        <th>CUSTOMER</th>
+                        <th>ITEMS</th>
+                        <th>STATUS</th>
+                        <th>TIME</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody id="order-queue-body">
+                    </tbody>
+            </table>
+            <div class="queue-footer">
+                <p>Total orders in queue: <span id="total-queue-count">0</span></p>
+                <button onclick="refreshQueue()" class="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh Queue</button>
+                <button onclick="clearCompletedOrders()" class="clear-btn"><i class="fas fa-trash-alt"></i> Clear Completed</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="customer-view" class="view-container">
+        <div class="hero">
+            <h1>Delicious Food Delivered</h1>
+            <p>Order from your favorite restaurants</p>
+        </div>
+        <div class="content-area">
+            <div class="restaurant-list-container">
+                <h2>Choose a Restaurant</h2>
+                <div id="restaurant-grid" class="restaurant-grid">
+                    </div>
+            </div>
+            <aside class="order-cart-sidebar" id="order-cart-sidebar">
+                </aside>
+        </div>
+    </div>
+
+    <div id="menu-view" class="view-container" style="display:none;">
+        <div class="hero">
+            <h1>Delicious Food Delivered</h1>
+            <p>Order from your favorite restaurants</p>
+        </div>
+        <div class="content-area">
+            <div class="menu-container">
+                <h2 id="menu-restaurant-name"></h2>
+                <p id="menu-restaurant-cuisines"></p>
+                
+                <h3 class="menu-category-title">Main Courses</h3>
+                <div id="menu-items-list" class="menu-items-list">
+                    </div>
+            </div>
+            <aside class="order-cart-sidebar" id="menu-order-cart-sidebar">
+                </aside>
+        </div>
+    </div>
+
+    <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Order Placed Successfully!</h3>
+                <p>Your order has been added to the queue.</p>
+                <p>Your ORDER# <strong id="modal-order-id">ORD-000</strong></p>
+                <p>Estimated time: <strong id="modal-delivery-time">25-35 minutes</strong></p>
+                <button class="track-btn" onclick="showChefLogin()">Track Your Order</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
