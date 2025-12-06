@@ -3,126 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodFlow - Food Ordering System</title>
+    <title>Food Sambaa - Food Delivery</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
     <header>
-        <div class="logo">FoodFlow</div>
         <nav>
-            <button onclick="showCustomerView()" class="nav-button" id="customer-view-btn"><i class="fas fa-user"></i> Customer View</button>
-            <button onclick="showChefLogin()" class="nav-button" id="chef-view-btn"><i class="fas fa-utensils"></i> Chef View</button>
-            <span id="chef-greeting" style="display: none;">Welcome, Chef <button onclick="logoutChef()" class="logout-btn">Logout</button></span>
+            <a href="index.html" class="logo">Food Sambaa</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="signin.html" class="btn">Sign In</a>
         </nav>
     </header>
 
-    <div id="chef-login-page" class="view-container" style="display:none;">
-        <div class="login-box">
-            <h2>Chef Login</h2>
-            <p>Access the kitchen dashboard</p>
-            <input type="text" id="chef-username" placeholder="Enter username">
-            <input type="password" id="chef-password" placeholder="Enter password">
-            <button onclick="loginChef()">Sign In</button>
-            <div class="demo-credentials">
-                <h4>Demo Credentials:</h4>
-                <p>Username: **chef**</p>
-                <p>Password: **chef123**</p>
-            </div>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Delicious Food Delivered To Your Door</h1>
+            <p>Order from your favorite restaurants and get fresh food delivered in minutes.</p>
+            <a href="menu.html" class="btn btn-large">Order Now</a>
         </div>
-    </div>
+    </section>
 
-    <div id="chef-dashboard-view" class="view-container" style="display:none;">
-        <h1 class="dashboard-title">Chef Dashboard</h1>
-        <p class="dashboard-subtitle">Manage incoming orders and queue</p>
-        
-        <div class="status-cards">
-            <div class="status-card">
-                <div class="count" id="orders-waiting-count">0</div>
-                <div class="label">Orders Waiting</div>
+    <section class="categories">
+        <h2>Food Categories</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-icon">🍕</div>
+                <h3>Pizza</h3>
             </div>
-            <div class="status-card">
-                <div class="count" id="orders-preparing-count">0</div>
-                <div class="label">Orders Preparing</div>
+            <div class="category-card">
+                <div class="category-icon">🍔</div>
+                <h3>Burgers</h3>
             </div>
-            <div class="status-card">
-                <div class="count" id="orders-completed-count">0</div>
-                <div class="label">Orders Completed Today</div>
+            <div class="category-card">
+                <div class="category-icon">🍜</div>
+                <h3>Noodles</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍣</div>
+                <h3>Sushi</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🥗</div>
+                <h3>Salads</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍰</div>
+                <h3>Desserts</h3>
             </div>
         </div>
+    </section>
 
-        <div class="order-queue-section">
-            <h2 class="queue-title"><i class="fas fa-list-ul"></i> Order Queue</h2>
-            <table class="order-table">
-                <thead>
-                    <tr>
-                        <th>ORDER ID</th>
-                        <th>CUSTOMER</th>
-                        <th>ITEMS</th>
-                        <th>STATUS</th>
-                        <th>TIME</th>
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody id="order-queue-body">
-                    </tbody>
-            </table>
-            <div class="queue-footer">
-                <p>Total orders in queue: <span id="total-queue-count">0</span></p>
-                <button onclick="refreshQueue()" class="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh Queue</button>
-                <button onclick="clearCompletedOrders()" class="clear-btn"><i class="fas fa-trash-alt"></i> Clear Completed</button>
+    <section class="featured">
+        <h2>Popular Restaurants</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-img">🍕</div>
+                <div class="restaurant-info">
+                    <h3>Pizza Palace</h3>
+                    <p>Italian, Pizza</p>
+                    <span class="rating">4.8 ★</span>
+                    <span class="delivery">25-30 min</span>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-img">🍔</div>
+                <div class="restaurant-info">
+                    <h3>Burger Barn</h3>
+                    <p>American, Burgers</p>
+                    <span class="rating">4.6 ★</span>
+                    <span class="delivery">20-25 min</span>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-img">🍜</div>
+                <div class="restaurant-info">
+                    <h3>Noodle House</h3>
+                    <p>Asian, Noodles</p>
+                    <span class="rating">4.7 ★</span>
+                    <span class="delivery">30-35 min</span>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div id="customer-view" class="view-container">
-        <div class="hero">
-            <h1>Delicious Food Delivered</h1>
-            <p>Order from your favorite restaurants</p>
-        </div>
-        <div class="content-area">
-            <div class="restaurant-list-container">
-                <h2>Choose a Restaurant</h2>
-                <div id="restaurant-grid" class="restaurant-grid">
-                    </div>
-            </div>
-            <aside class="order-cart-sidebar" id="order-cart-sidebar">
-                </aside>
-        </div>
-    </div>
+    </section>
 
-    <div id="menu-view" class="view-container" style="display:none;">
-        <div class="hero">
-            <h1>Delicious Food Delivered</h1>
-            <p>Order from your favorite restaurants</p>
-        </div>
-        <div class="content-area">
-            <div class="menu-container">
-                <h2 id="menu-restaurant-name"></h2>
-                <p id="menu-restaurant-cuisines"></p>
-                
-                <h3 class="menu-category-title">Main Courses</h3>
-                <div id="menu-items-list" class="menu-items-list">
-                    </div>
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Choose Restaurant</h3>
+                <p>Browse from hundreds of restaurants near you</p>
             </div>
-            <aside class="order-cart-sidebar" id="menu-order-cart-sidebar">
-                </aside>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Select Your Food</h3>
+                <p>Pick your favorite dishes from the menu</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Fast Delivery</h3>
+                <p>Get your food delivered hot and fresh</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-body">
-                <i class="fas fa-check-circle success-icon"></i>
-                <h3>Order Placed Successfully!</h3>
-                <p>Your order has been added to the queue.</p>
-                <p>Your ORDER# <strong id="modal-order-id">ORD-000</strong></p>
-                <p>Estimated time: <strong id="modal-delivery-time">25-35 minutes</strong></p>
-                <button class="track-btn" onclick="showChefLogin()">Track Your Order</button>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Food Sambaa</h4>
+                <p>Your favorite food, delivered fast.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: hello@foodsambaa.com</p>
+                <p>Phone: 123456789</p>
             </div>
         </div>
-    </div>
+        <p class="copyright">©️ 2025 Food Sambaa. All rights reserved.</p>
+    </footer>
 </body>
 </html>
